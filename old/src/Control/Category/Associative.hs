@@ -16,6 +16,10 @@
 -- NB: this contradicts another common meaning for an 'Associative' 'Category', which is one
 -- where the pentagonal condition does not hold, but for which there is an identity.
 --
+--
+-- 【中文】结合的二元函子：associate / disassociate 负责重新加括号，并应满足 Mac Lane 五边形。文件头的英文提醒：这和「有单位但不要求五边形」的另一种 Associative 用法不是一回事。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Associative
     ( Associative(..)

@@ -5,6 +5,8 @@ categories
 
 This package provides a number of classes for working with `Category` instances with more structure in Haskell.
 
+A Chinese guide to the modules is in [README.zh-CN.md](README.zh-CN.md).
+
 Contact Information
 -------------------
 

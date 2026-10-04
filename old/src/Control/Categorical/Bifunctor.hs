@@ -14,6 +14,10 @@
 -- Portability: non-portable (functional-dependencies)
 --
 -- A more categorical definition of 'Bifunctor'
+--
+-- 【中文】旧版二元函子。PFunctor / QFunctor 只动左或右变元（first / second），Bifunctor 的 bimap 两边一起动；dimap 用于第一个变元反变的情形。当前 src/Math/Functor.hs 用「余定义域是自然变换范畴」重新编码了这件事。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Categorical.Bifunctor
     ( PFunctor (first)

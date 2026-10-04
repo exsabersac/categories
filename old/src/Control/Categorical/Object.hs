@@ -12,6 +12,10 @@
 -- This module declares the 'HasTerminalObject' and 'HasInitialObject' classes.
 --
 -- These are both special cases of the idea of a (co)limit.
+--
+-- 【中文】终对象与始对象。terminate 是到终对象的唯一箭头，initiate 是从始对象出发的唯一箭头，二者都是（余）极限的特例。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 
 module Control.Categorical.Object

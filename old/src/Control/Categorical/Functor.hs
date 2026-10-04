@@ -17,6 +17,10 @@
 -- Portability : non-portable (functional-dependencies)
 --
 -- A more categorical definition of 'Functor'
+--
+-- 【中文】旧版函子，用多参数类和函数依赖，而不是关联类型 Dom / Cod。Endofunctor 是自函子。LiftedFunctor / LoweredFunctor 用来在 Hask 上的普通函子和一般范畴之间抬升或降下。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Categorical.Functor
     ( Functor(fmap)

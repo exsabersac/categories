@@ -20,6 +20,7 @@ extra-source-files:
   .travis.yml
   .vim.custom
   README.markdown
+  README.zh-CN.md
   CHANGELOG.markdown
 
 library

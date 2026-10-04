@@ -13,6 +13,10 @@
 -- Stability   : experimental
 -- Portability : non-portable (class-associated types)
 --
+--
+-- 【中文】有限积（Cartesian：fst、snd、diag 或 &&&）和有限余积（CoCartesian：inl、inr、|||）。下面若干 bimap/braid/associate 是把积或和装回幺半结构时的具体公式。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Cartesian
     (

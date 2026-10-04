@@ -17,6 +17,10 @@
 -- monoidal. This lets us reuse the same 'Bifunctor' over different categories without
 -- painful newtype wrapping.
 
+--
+-- 【中文】幺半结构：在结合的二元函子上加单位对象。idl / idr 是左右单位子（传统记号 λ、ρ），coidl / coidr 是余单位；应满足三角形连贯条件。单位是相对「哪一个二元函子」而言的，所以类挂在函子上而不是只挂在范畴上。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 
 module Control.Category.Monoidal

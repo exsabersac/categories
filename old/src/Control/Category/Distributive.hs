@@ -13,6 +13,10 @@
 -- Stability  : experimental
 -- Portability: non-portable (class-associated types)
 --
+--
+-- 【中文】分配范畴。factor 是「和上面的积」收成「积上面的和」的标准箭头；Distributive 要求反方向的 distribute，使积对余积可分配。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Distributive
     (

@@ -13,6 +13,10 @@
 -- Stability  : experimental
 -- Portability: non-portable (class-associated types)
 --
+--
+-- 【中文】笛卡尔闭范畴：在有限积之上加指数对象，curry / uncurry 以及求值 counit、余求值 unit。CoCCC 是箭头方向反过来的版本。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Cartesian.Closed
     (

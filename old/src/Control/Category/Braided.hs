@@ -13,6 +13,10 @@
 -- Stability  : experimental
 -- Portability: portable
 --
+--
+-- 【中文】辫子范畴。braid 交换二元函子的两个变元，应满足六边形；若 braid . braid = id 就是对称（Symmetric）。和单位子配合时还有三角形等式。swap 是交换的另一个入口。
+-- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Braided
   ( Braided(..)
