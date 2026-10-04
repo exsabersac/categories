@@ -4,6 +4,8 @@
 
 库的版本号是 `2`。更新日志写着这一版用 `multicategories` 和 `hask` 里的片段从头搭过。因此它和 Hackage 上早期、以 `Control.Category` 为中心的 1.x 不是同一套类层次。当前会编译进去的代码只在 `src/Math/`。
 
+他关于范畴论、光学、自由单子和递归模式的公开讲稿、博文与代码库，收在 [Edward Kmett 阅读导引](docs/kmett-reading.md)。那是外部材料的导读，不是本库 API，也不改变任何 Haskell 代码。
+
 ## 这个库在做什么
 
 Haskell 自带的 `Control.Category` 把「有单位、能复合」收成一个类，最常见的例子是函数 `(->)`。本库把这件事做得更一般，并且用 kind 多态把箭头写成
