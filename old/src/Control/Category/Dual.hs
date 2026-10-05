@@ -17,8 +17,20 @@
 -- Portability: portable
 --
 --
--- 【中文】对偶范畴的 newtype：里面的箭头与外面方向相反。当前库里扮演同一角色的是 src/Math/Category.hs 的 Yoneda 与类型族 Op。
--- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 【中文】对偶范畴（dual / opposite category）的载体：@Dual k a b@ 里装的是 @k b a@，
+-- 也就是把原范畴的箭头全部反向。
+--
+-- 经典对照：
+--
+-- * 对象集合与 @k@ 相同；
+-- * 态射 @a → b@ 在对偶里变成 @b → a@；
+-- * 单位：@id_Dual = Dual id@；
+-- * 复合：@Dual f . Dual g = Dual (g . f)@（顺序对调，才能与原复合衔接）。
+--
+-- 当前库（@src/Math/Category.hs@）用 'Yoneda' 与类型族 'Op' 扮演同一角色；
+-- 本文件是 1.x / @Control.Category@ 风格的写法。
+--
+-- 本文件在 @old/@ 下，不在 @categories.cabal@ 的 @hs-source-dirs@ 里，当前库不会编译它。
 -- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 module Control.Category.Dual
@@ -46,6 +58,8 @@ import Data.Typeable (Typeable, gcast1)
 #endif
 #endif
 
+-- | 【中文】对偶箭头的 newtype。字段 @runDual@ 取出「方向相反」的那条原箭头。
+-- 类型参数顺序是 @Dual k a b@，内部却是 @k b a@：外层从 @a@ 到 @b@，里层从 @b@ 到 @a@。
 data Dual k a b = Dual { runDual :: k b a }
 #if __GLASGOW_HASKELL__ >= 708
   deriving Typeable
@@ -53,6 +67,7 @@ data Dual k a b = Dual { runDual :: k b a }
 #define Typeable2 Typeable
 #endif
 
+-- | 【中文】对偶范畴的 'Category' 实例：单位套一层 @Dual@；复合先剥开、反序复合、再包回去。
 instance Category k => Category (Dual k) where
   id = Dual id
   Dual f . Dual g = Dual (g . f)

@@ -167,21 +167,37 @@ class (Category (Cod f), Category (Dom f)) => Functor (f :: i -> j) where
 | 范围 | 中文写到什么程度 |
 | --- | --- |
 | `src/Math/**` 全部 13 个暴露模块 | 模块头，以及范畴、函子、自然变换、单子、记录、多元范畴、自由构造、operad、索引值上的类、数据型和关键函数。每个暴露模块都有中文，不是只写了 `Category`。 |
-| `old/src/Control/**` | 只在各文件原有英文模块头下加了一段中文，说明它在旧层次里的位置。没有逐个定义重写。 |
+| `old/src/Control/**` 全部 12 个归档模块 | 模块头 + 类 / 数据型 / 关键函数上的 Haddock 中文（定律、意图、与 `src/Math` 的对照）。英文原文保留；不改运行时与导出。 |
 
-`old/` 不在 `categories.cabal` 的 `hs-source-dirs` 里，当前包不会编译它。那是 1.x 风格、建立在 `Control.Category` 上的一层，方便和现在的 `Math.*` 对照：
+## 归档层次 `old/`（经典 Control.Category 风格）
+
+`old/` 不在 `categories.cabal` 的 `hs-source-dirs` 里，当前包不会编译它。那是 1.x 风格、建立在 `Control.Category` 上的一层：对象、态射、单位、复合、积 / 余积、幺半与闭结构都按教科书名字铺开，方便和现在的实验性 `src/Math.*` 对照。
+
+若要按「经典定义从里到外」读 `old/`，建议顺序：
+
+1. [Discrete](old/src/Control/Category/Discrete.hs)：只有单位箭头；相等证明即态射。
+2. [Dual](old/src/Control/Category/Dual.hs)：对偶范畴（箭头反向）；现由 `Yoneda` / `Op` 承担。
+3. [Hask](old/src/Control/Category/Hask.hs)：`type Hask = (->)`，对象是类型、态射是函数。
+4. [Object](old/src/Control/Categorical/Object.hs)：始对象、终对象（（余）极限特例）。
+5. [Functor](old/src/Control/Categorical/Functor.hs) 与 [Bifunctor](old/src/Control/Categorical/Bifunctor.hs)：函子 / 二元函子（函数依赖版）。
+6. [Associative](old/src/Control/Category/Associative.hs)：结合子与五边形。
+7. [Monoidal](old/src/Control/Category/Monoidal.hs)：单位对象与单位子 λ、ρ，三角形。
+8. [Braided](old/src/Control/Category/Braided.hs)：辫子、对称、六边形。
+9. [Cartesian](old/src/Control/Category/Cartesian.hs)：有限积与余积（`fst`/`snd`/`&&&`，`inl`/`inr`/`|||`）。
+10. [Cartesian.Closed](old/src/Control/Category/Cartesian/Closed.hs)：笛卡尔闭、指数、`curry`/`apply`。
+11. [Distributive](old/src/Control/Category/Distributive.hs)：积对余积的分配。
 
 | 旧模块 | 在说什么 |
 | --- | --- |
+| `Control.Category.Discrete` | 只有单位箭头的离散范畴 |
+| `Control.Category.Dual` | 对偶 newtype（现由 `Yoneda` / `Op` 承担） |
+| `Control.Category.Hask` | `type Hask = (->)` |
+| `Control.Categorical.Object` | 始对象、终对象 |
 | `Control.Categorical.Functor` | 用函数依赖写的函子、自函子、抬升/下降 |
 | `Control.Categorical.Bifunctor` | `first` / `second` / `bimap` / `dimap` |
-| `Control.Categorical.Object` | 始对象、终对象 |
-| `Control.Category.Hask` | `type Hask = (->)` |
-| `Control.Category.Dual` | 对偶 newtype（现由 `Yoneda` / `Op` 承担） |
-| `Control.Category.Discrete` | 只有单位箭头的离散范畴 |
 | `Control.Category.Associative` | 结合子与五边形 |
-| `Control.Category.Braided` | 辫子与对称 |
 | `Control.Category.Monoidal` | 单位子 λ、ρ |
+| `Control.Category.Braided` | 辫子与对称 |
 | `Control.Category.Cartesian` | 有限积与余积 |
 | `Control.Category.Cartesian.Closed` | 笛卡尔闭、指数 |
 | `Control.Category.Distributive` | 积对和的分配 |

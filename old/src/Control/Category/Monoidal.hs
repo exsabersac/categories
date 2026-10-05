@@ -18,8 +18,23 @@
 -- painful newtype wrapping.
 
 --
--- 【中文】幺半结构：在结合的二元函子上加单位对象。idl / idr 是左右单位子（传统记号 λ、ρ），coidl / coidr 是余单位；应满足三角形连贯条件。单位是相对「哪一个二元函子」而言的，所以类挂在函子上而不是只挂在范畴上。
--- 本文件在 old/ 下，不在 categories.cabal 的 hs-source-dirs 里，当前库不会编译它。
+-- 【中文】幺半范畴结构（monoidal structure）：在已结合的二元函子 @p@ 上再配备单位对象
+-- @Id k p@，以及左右单位子（传统记号 λ、ρ）及其逆：
+--
+-- @
+-- idl   :  I ⊗ a  →  a          （λ）
+-- idr   :  a ⊗ I  →  a          （ρ）
+-- coidl :  a      →  I ⊗ a      （λ⁻¹）
+-- coidr :  a      →  a ⊗ I      （ρ⁻¹）
+-- @
+--
+-- 应满足三角形连贯条件（triangle）：单位子与结合子相容；且
+-- @idl . coidl = id@、@idr . coidr = id@ 等（互为逆）。
+--
+-- 设计选择：类挂在「范畴 + 二元函子」上，而不是只挂在范畴上——
+-- 同一范畴往往有多种候选张量（积、和……），这样可避免为每种张量包 newtype。
+--
+-- 本文件在 @old/@ 下，不在 @categories.cabal@ 的 @hs-source-dirs@ 里，当前库不会编译它。
 -- 英文说明保留；这里只加阅读用的中文，不改定义。
 -------------------------------------------------------------------------------------------
 
@@ -45,15 +60,25 @@ import Data.Void
 > coidl . idl = id
 > coidr . idr = id
 
+【中文】幺半结构：超类 'Associative' 已给出结合子；这里补上单位对象与单位子。
+三角形条件把「先结合再消单位」与「直接消另一侧单位」等同起来。
+关联类型 @Id k p@ 是「相对这个张量 @p@」的单位，不是范畴的全局唯一数据。
 -}
 
 class Associative k p => Monoidal (k :: * -> * -> *) (p :: * -> * -> *) where
+  -- | 【中文】张量 @p@ 在范畴 @k@ 中的单位对象（monoidal unit）。
   type Id (k :: * -> * -> *) (p :: * -> * -> *) :: *
+  -- | 【中文】左单位子 λ：消去左边的单位。
   idl   :: k (p (Id k p) a) a
+  -- | 【中文】右单位子 ρ：消去右边的单位。
   idr   :: k (p a (Id k p)) a
+  -- | 【中文】左单位子的逆 λ⁻¹：在左边引入单位。
   coidl :: k a (p (Id k p) a)
+  -- | 【中文】右单位子的逆 ρ⁻¹：在右边引入单位。
   coidr :: k a (p a (Id k p))
 
+-- | 【中文】积幺半结构：单位是 @()@；@idl = snd@，@idr = fst@；
+-- @coidl@ / @coidr@ 分别塞入左边或右边的 @()@。
 instance Monoidal (->) (,) where
   type Id (->) (,) = ()
   idl = snd
@@ -61,6 +86,9 @@ instance Monoidal (->) (,) where
   coidl a = ((),a)
   coidr a = (a,())
 
+-- | 【中文】余积幺半结构：单位是空类型 @Void@；
+-- 从 @Either Void a@ 出来只能走 @Right@（@absurd@ 处理不可能的 @Left@）；
+-- @coidl = Right@、@coidr = Left@ 把值注入非空那一侧。
 instance Monoidal (->) Either where
   type Id (->) Either = Void
   idl = either absurd id
@@ -82,4 +110,3 @@ instance Monoidal (->) Either where
 "braid/coidr" braid . coidr = coidl
 "braid/coidl" braid . coidl = coidr
  --}
-
