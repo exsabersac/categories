@@ -6,6 +6,14 @@
 
 他关于范畴论、光学、自由单子和递归模式的公开讲稿、博文与代码库，收在 [Edward Kmett 阅读导引](docs/kmett-reading.md)。那是外部材料的导读，不是本库 API，也不改变任何 Haskell 代码。
 
+若要按「从简单到复杂」学范畴论并落到本库 `src/Math`，用 [学习路径](docs/learning-path.md)。路径按阶段列出目标、练习与模块；外链材料可用脚本拉到本地（不提交进 git）：
+
+```bash
+./scripts/fetch-materials.sh
+```
+
+拉取结果在 `materials/local/`（已 gitignore）。许可说明见 [`materials/README.md`](materials/README.md)。
+
 ## 这个库在做什么
 
 Haskell 自带的 `Control.Category` 把「有单位、能复合」收成一个类，最常见的例子是函数 `(->)`。本库把这件事做得更一般，并且用 kind 多态把箭头写成

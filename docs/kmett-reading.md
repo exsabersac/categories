@@ -1,5 +1,8 @@
 # Edward Kmett：范畴、光学与 Haskell 导读
 
+> 若要按阶段从易到难阅读，并对照本仓库 `src/Math` 模块，见 [学习路径](learning-path.md)。本文仍是按主题归档的完整书目。
+
+
 这份清单只收公开材料：标题、作者、年份（能确定时）和原链接，每条加一句中文，说明它和阅读本仓库有什么关系。不抄讲稿，也不搬论文正文。
 
 本仓库是 Edward Kmett 的 [`categories`](https://github.com/ekmett/categories) 的实验性重写，不是 [`lens`](https://github.com/ekmett/lens)。`categories.cabal` 写着 `stability: experimental`、版本 `2`；会编译的代码在 `src/Math/`，类层次是范畴、群胚、函子、自然变换、单子与余单子、多元范畴和自由多元范畴。下面的材料是这套类的背景：他如何把范畴论写进 Haskell，以及光学、自由单子、递归模式这些相邻工作。它们解释动机和词汇，不提供本库没有的实例。

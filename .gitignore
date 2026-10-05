@@ -1,6 +1,8 @@
 dist
 docs/*
 !docs/kmett-reading.md
+!docs/learning-path.md
+materials/local/
 wiki
 TAGS
 tags
